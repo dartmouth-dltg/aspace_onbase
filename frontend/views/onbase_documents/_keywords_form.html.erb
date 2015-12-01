@@ -28,6 +28,36 @@
                      required />
           </div>
       </div>
+    <% elsif field[:type] == 'enum_catalog_location' %>
+      <div class="row">
+        <div class="col-sm-4">
+          <select name="keywords[<%= field[:keyword] %>]" id="onbase_document_keywords__<%= field[:keyword] %>_" class="form-control" required>
+            <option value="Rauner Manuscript - WMAN">Rauner Manuscript - WMAN</option>
+            <option value="Rauner Account Books - WACC">Rauner Account Books - WACC</option>
+            <option value="Rauner Alumni - WALU">Rauner Alumni - WALU</option>
+            <option value="Rauner Broadside - WRAUB">Rauner Broadside - WRAUB</option>
+            <option value="Rauner Codex - WMNC">Rauner Codex - WMNC</option>
+            <option value="D.C. History - WDCH">D.C. History - WDCH</option>
+            <option value="D.C. History Broadside - WDCHB">D.C. History Broadside - WDCHB</option>
+            <option value="D.C. History Membook - WDCM">D.C. History Membook - WDCM</option>
+            <option value="D.C. History Thesis - WDCT">D.C. History Thesis - WDCT</option>
+            <option value="Rauner DVD - WRAUZ">Rauner DVD - WRAUZ</option>
+            <option value="Rauner Eberhart Manuscript - WMEB">Rauner Eberhart Manuscript - WMEB</option>
+            <option value="Rauner Frost Manuscript - WMFR">Rauner Frost Manuscript - WMFR</option>
+            <option value="Rauner Iconography - WRAUI">Rauner Iconography - WRAUI</option>
+            <option value="Rauner Lansburgh Manuscript - WLAN">Rauner Lansburgh Manuscript - WLAN</option>
+            <option value="Rauner McClure Manuscript - WMMC">Rauner McClure Manuscript - WMMC</option>
+            <option value="Rauner Motion Picture - WRAUU">Rauner Motion Picture - WRAUU</option>
+            <option value="Rauner Phonodisc - WRAUP">Rauner Phonodisc - WRAUP</option>
+            <option value="Rauner Phonotape - WRAUA">Rauner Phonotape - WRAUA</option>
+            <option value="Rauner Realia - WRAUE">Rauner Realia - WRAUE</option>
+            <option value="Rauner Rumford Manuscript - WMRU">Rauner Rumford Manuscript - WMRU</option>
+            <option value="Rauner Stefansson Manuscript - WMST">Rauner Stefansson Manuscript - WMST</option>
+            <option value="Rauner Senior Fellow - WSEF">Rauner Senior Fellow - WSEF</option>
+            <option value="Rauner Webster Manuscript - WMWE">Rauner Webster Manuscript - WMWE</option>
+          </select>
+        </div>
+      </div>
     <% elsif field[:type] == 'generated' %>
       <div class="label-only">
         <em class="text-muted"><%= I18n.t("plugins.onbase_document._frontend.messages.system_generated") %></em>

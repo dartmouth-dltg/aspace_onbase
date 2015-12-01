@@ -1,10 +1,10 @@
 keywords:
+    accession_date_keyword: SPCL Accession Date
+    accession_date: SPCL Accession Date
     accession_identifier_keyword: SPCL Accession Identifier
     accession_id_keyword: SPCL Accession ID
     agent_id_keyword: SPCL Agent ID
     agent_name_keyword: SPCL Agent Name
-    accession_date_keyword: SPCL Accession Date
-    accession_date: SPCL Accession Date
     catalog_location_keyword: SPCL Catalog Location
     conservation_number_keyword: SPCL Conservation Number
     event_id_keyword: SPCL Event ID
@@ -12,12 +12,15 @@ keywords:
     example_alpha_20_keyword: SPCL-ExampleAlpha20
     example_date_keyword: SPCL-ExampleDate
     example_date: SPCL-ExampleDate
-    object_id_keyword: SPCL Archival Object ID
-    resource_identifier_keyword: SPCL Resource Identifier
-    resource_id_keyword: SPCL Resource ID
+    file_name_keyword: SPCL Filename
+    finding_aid_use_end_date_keyword: SPCL Finding Aid Use End Date
+    finding_aid_use_start_date_keyword: SPCL Finding Aid Use Start Date
     event_processing_plan_date_keyword: SPCL Processing Plan Date
     event_processing_plan_date: SPCL Processing Plan Date
     loan_end_date_keyword: SPCL Loan End Date
     loan_end_date: SPCL Loan End Date
     not_generated: not_generated
+    object_id_keyword: SPCL Archival Object ID
     potential_date_keys: potential_date_keys
+    resource_identifier_keyword: SPCL Resource Identifier
+    resource_id_keyword: SPCL Resource ID

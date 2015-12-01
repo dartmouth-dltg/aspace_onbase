@@ -54,13 +54,13 @@ class DocumentKeywordDefinitions
     "SPCL - Processing Plan" => {
       :supported_records => [:accession, :resource, :event],
       :fields => [
+        {:type => "enum_catalog_location", :keyword => :catalog_location_keyword},
         {:type => "generated", :generator => :linked_record_system_id},
         {:type => "generated", :generator => :event_processing_plan_date},
         {:type => "generated", :generator => :parent_system_id},
         {:type => "generated", :generator => :record_identifier},
         {:type => "generated", :generator => :agent_name},
         {:type => "generated", :generator => :agent_system_id},
-        {:type => "text", :keyword => :catalog_location_keyword},
       ]},
 
     "SPCL - Accession Snapshot" => {
@@ -75,20 +75,20 @@ class DocumentKeywordDefinitions
       :supported_records => [:archival_object, :event],
       :fields => [
         {:type => "text", :keyword => :conservation_number_keyword},
+        {:type => "enum_catalog_location", :keyword => :catalog_location_keyword},
         {:type => "generated", :generator => :parent_system_id},
         {:type => "generated", :generator => :linked_record_system_id},
         {:type => "generated", :generator => :record_identifier},
-        {:type => "text", :keyword => :catalog_location_keyword},
       ]},
 
     "SPCL - Preservation Documentation" => {
       :supported_records => [:archival_object, :event],
       :fields => [
         {:type => "text", :keyword => :conservation_number_keyword},
+        {:type => "enum_catalog_location", :keyword => :catalog_location_keyword},
         {:type => "generated", :generator => :parent_system_id},
         {:type => "generated", :generator => :linked_record_system_id},
         {:type => "generated", :generator => :record_identifier},
-        {:type => "text", :keyword => :catalog_location_keyword},
       ]},
 
     "SPCL - Missing Items Record" => {
@@ -111,10 +111,10 @@ class DocumentKeywordDefinitions
     "SPCL - Deaccession Record" => {
       :supported_records => [:accession, :archival_object, :event],
       :fields => [
+        {:type => "enum_catalog_location", :keyword => :catalog_location_keyword},
         {:type => "generated", :generator => :parent_system_id},
         {:type => "generated", :generator => :linked_record_system_id},
         {:type => "generated", :generator => :record_identifier},
-        {:type => "text", :keyword => :catalog_location_keyword},
       ]},
 
     "SPCL - Patron Registration Form" => {
@@ -136,9 +136,9 @@ class DocumentKeywordDefinitions
     "SPCL - Loan Agreement" => {
       :supported_records => [:event],
       :fields => [
+        {:type => "date", :keyword => :loan_end_date_keyword},
         {:type => "generated", :generator => :agent_name},
         {:type => "generated", :generator => :parent_system_id},
-        {:type => "date", :keyword => :loan_end_date_keyword},
       ]},
 
     "SPCL - Facilities Report" => {
@@ -153,6 +153,16 @@ class DocumentKeywordDefinitions
       :fields => [
         {:type => "generated", :generator => :agent_name},
         {:type => "generated", :generator => :parent_system_id},
+      ]},
+    
+    "SPCL - Superseded Finding Aids" => {
+      :supported_records => [:archival_object],
+      :fields => [
+        {:type => "text", :keyword => :finding_aid_use_start_date_keyword},
+        {:type => "date", :keyword => :finding_aid_use_end_date_keyword},
+        {:type => "generated", :generator => :parent_system_id},
+        {:type => "generated", :generator => :linked_record_system_id},
+        {:type => "generated", :generator => :record_identifier},
       ]},
 
     "SPCL - Example Document Type" => {

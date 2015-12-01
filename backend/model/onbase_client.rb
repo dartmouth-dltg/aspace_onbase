@@ -25,6 +25,9 @@ class OnbaseClient
 
   def upload(file_stream, file_name, content_type, doc_type, keywords = {})
 
+    # add the filename to the keyword list
+    keywords[:file_name_keyword] = file_name
+
     upload_url = url('', {"documentTypeName" => doc_type})
     req = Net::HTTP::Post::Multipart.new(upload_url.request_uri,
                                          "file" => UploadIO.new(file_stream, content_type, file_name),
@@ -119,6 +122,9 @@ class OnbaseClient
   def add_to_keywords(onbase_id, keywords)
     onbase_keywords = get_keywords(onbase_id)
     
+    # save the file name
+    onbase_filename = parse_onbase_filename(onbase_keywords)
+    
     # find any potential user input keywords
     keywords, onbase_only_keywords = user_input_keywords(keywords, onbase_keywords)
   
@@ -129,7 +135,7 @@ class OnbaseClient
     formatted_keywords = filter_onbase_dates(format_keywords(keywords), onbase_date_keywords)
 
     # we now preference the ArchivesSpace keywords on the merge since we've already extracted the pieces we want to keep
-    merged = onbase_keywords.merge('keywords' => formatted_keywords.concat(onbase_only_keywords).concat(onbase_date_keywords))
+    merged = onbase_keywords.merge('keywords' => formatted_keywords.concat(onbase_only_keywords).concat(onbase_date_keywords).concat(onbase_filename))
     
     put_keywords(onbase_id, merged)
     
@@ -198,6 +204,12 @@ class OnbaseClient
 
 
   private
+  
+  def parse_onbase_filename(onbase_keywords)
+    onbase_filename = onbase_keywords['keywords'].select { |k| [KeywordNameMapper.translate(:file_name_keyword)].include?(k['keywordTypeName'])}
+    
+    return onbase_filename
+  end
   
   def user_input_keywords(keywords, onbase_keywords)
     # find the not_generated, ie user input keywords, keys and move them to a new array to compare to the fetched keywords from onbase
