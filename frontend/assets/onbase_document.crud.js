@@ -227,9 +227,10 @@ OnBaseRecordReadOnlyView.prototype.setupFetchKeywordsAction = function() {
     var $button = $(this);
 
     $button.prop("disabled", true);
-    $button.append(AS.renderTemplate("aspace_onbase_fetch_spinner_template"));
+    $button.append('<img src="/assets/ajax-loader-bar.gif" />');
 
     $.get($button.data("url"), function(html) {
+    	$button.prop("disabled", false);
       $button.replaceWith(html);
     });
   });
