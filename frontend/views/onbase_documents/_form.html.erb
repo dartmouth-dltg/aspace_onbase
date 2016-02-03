@@ -44,7 +44,7 @@
         </div>
       </section>
     <% else %>
-      <div class="alert alert-error"><%= I18n.t("plugins.onbase_document._frontend.messages.edit_not_supported") %></div>
+      <div class="alert alert-danger"><%= I18n.t("plugins.onbase_document._frontend.messages.edit_not_supported") %></div>
     <% end %>
     <%= form.hidden_input "onbase_id" %>
   <% end %>

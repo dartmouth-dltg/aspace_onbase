@@ -230,7 +230,7 @@ OnBaseRecordReadOnlyView.prototype.setupFetchKeywordsAction = function() {
     $button.append('<img src="/assets/ajax-loader-bar.gif" />');
 
     $.get($button.data("url"), function(html) {
-    	$button.prop("disabled", false);
+      $button.prop("disabled", false);
       $button.replaceWith(html);
     });
   });
