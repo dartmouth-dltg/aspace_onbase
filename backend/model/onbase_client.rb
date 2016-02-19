@@ -7,7 +7,7 @@ class OnbaseClient
   def initialize(opts = {})
     @base_url = AppConfig[:onbase_robi_url]
     @username = AppConfig[:onbase_robi_username]
-    @password = AppConfig[:onbase_robi_password]
+    @password = AppConfig[:onbase_robi_password_secret]
 
     @user = opts.fetch(:user)
   end

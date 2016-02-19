@@ -11,7 +11,7 @@ KeywordNameMapper.configure_i18n
 
 
 # Hit these early just to make sure they're set
-settings = [:onbase_robi_url, :onbase_robi_username, :onbase_robi_password,
+settings = [:onbase_robi_url, :onbase_robi_username, :onbase_robi_password_secret,
             :onbase_keyword_job_interval_seconds,
             :onbase_delete_unlinked_documents_cron,
             :onbase_delete_obsolete_documents_cron]
