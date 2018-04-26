@@ -91,7 +91,6 @@ class OnbaseDocumentsController < ApplicationController
           response.headers['Content-Disposition'] = download_response['Content-Disposition']
           response.headers['Content-Type'] = download_response['Content-Type']
           response.headers['Content-Length'] = download_response['Content-Length']
-
           queue << :ok
           download_response.read_body do |chunk|
             queue << chunk

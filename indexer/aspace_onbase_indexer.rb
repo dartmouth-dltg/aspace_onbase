@@ -1,4 +1,4 @@
-class CommonIndexer
+class IndexerCommon
 
   @@record_types << :onbase_document
 

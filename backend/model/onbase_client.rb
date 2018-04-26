@@ -1,6 +1,6 @@
 require 'net/http'
 require 'net/http/post/multipart'
-
+require 'aspace_logger'
 
 class OnbaseClient
 
@@ -27,7 +27,6 @@ class OnbaseClient
 
     # add the filename to the keyword list
     keywords[:file_name_keyword] = file_name
-
     upload_url = url('', {"documentTypeName" => doc_type})
     req = Net::HTTP::Post::Multipart.new(upload_url.request_uri,
                                          "file" => UploadIO.new(file_stream, content_type, file_name),
@@ -157,6 +156,8 @@ class OnbaseClient
 
       req.basic_auth @username, @password
       http.request(req) do |response|
+        logger=Logger.new($stderr)
+        logger.debug("onbaseResponse: #{response}")
         if response.code == "200"
           return true
         elsif response.code == "404"
