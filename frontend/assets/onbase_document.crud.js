@@ -205,6 +205,7 @@ OnBaseRecordLinker.prototype.openUploadModal = function(formUrl) {
 
 OnBaseRecordLinker.prototype.setupLinker = function() {
   var self = this;
+  console.log(self);
   self.$container.on("click", ".onbase-show-linker", function() {
     $(this).closest(".form-group").siblings(".form-group").remove();
     $(this).closest(".form-group").remove();
