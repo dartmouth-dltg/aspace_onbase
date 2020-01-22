@@ -2,54 +2,6 @@ require 'net/http'
 require 'net/http/post/multipart'
 require 'aspace_logger'
 
-# patch net http for ssl issues
-# see https://github.com/jruby/jruby/issues/4842
-#
-# Added by Joshua Shaw 2018-05-22
-# use is_a? to test if a CompositeIO object and
-# bifurcate base on that
-class Net::HTTPGenericRequest
-  
-  def send_request_with_body_stream(sock, ver, path, f)
-    unless content_length() or chunked?
-      raise ArgumentError,
-          "Content-Length not given and Transfer-Encoding is not `chunked'"
-    end
-    supply_default_content_type
-    write_header sock, ver, path
-    wait_for_continue sock, ver if sock.continue_timeout
-    
-    # use the regular stream from memory with compositeIO
-    # since the monkey patch for SSL breaks uploads to OnBase
-    if f.is_a?(CompositeReadIO)
-      if chunked?
-        while s = f.read(1024)
-          sock.write(sprintf("%x\r\n", s.length) << s << "\r\n")
-        end
-        sock.write "0\r\n\r\n"
-      else
-        while s = f.read(1024)
-          sock.write s
-        end
-      end
-    else
-      if chunked?
-        chunker = Chunker.new(sock)                                                                                                                                                            
-        IO.copy_stream(f, chunker)                                                                                                                                                             
-        chunker.finish                                                                                                                                                                         
-      else
-        # copy_stream can sendfile() to sock.io unless we use SSL.                                                                                                                             
-        # If sock.io is an SSLSocket, copy_stream will hit SSL_write()                                                                                                                         
-        if  sock.io.is_a? OpenSSL::SSL::SSLSocket                                                                                                                                              
-          IO.copy_stream(f, sock.io, 16 * 1024 * 1024) until f.eof?                                                                                                                            
-        else                                                                                                                                                                                   
-          IO.copy_stream(f, sock.io)                                                                                                                                                           
-        end                                                                                                                                                                                    
-      end   
-    end
-  end
-end
-
 class OnbaseClient
 
   def initialize(opts = {})
